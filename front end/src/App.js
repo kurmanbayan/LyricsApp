@@ -41,9 +41,6 @@ class App extends Component {
             }
         ]
     }
-
-
-
   }
 
 
@@ -68,9 +65,9 @@ class App extends Component {
     })
   }
 
-  handleAddToShoppingList = (product) => {
+  handleAddToShoppingList = (product, state) => {
     let list = this.state.shoppingList
-    const check = list.filter((data) => data === product)
+    const check = list.filter((data) => data.toLowerCase() === product.toLowerCase())
     if (check.length === 0) {
         list.push(product)
         this.handleAddToBadge()
@@ -79,8 +76,10 @@ class App extends Component {
         })
     }
     else {
-      this.handleRemoveFromList(product)
-      this.handleRemoveFromBadge()
+      if (state) {
+        this.handleRemoveFromList(product)
+        this.handleRemoveFromBadge()
+      }
     }
   }
 

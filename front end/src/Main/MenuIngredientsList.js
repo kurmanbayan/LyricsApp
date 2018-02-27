@@ -8,7 +8,7 @@ class MenuIngredientsList extends Component {
     let list = this.props.listOfIngredients
     let state = false
     for (let i = 0; i < list.length; i++) {
-      if (list[i].name === product) {
+      if (list[i].name.toLowerCase() === product.toLowerCase()) {
         state = true
         break
       }
@@ -21,18 +21,18 @@ class MenuIngredientsList extends Component {
       <div className="ui piled segments">
           {
             this.props.data.ingredients.map((item, index) => {
-              if (this.isInFridge(item)) {
+              if (this.isInFridge(item.name)) {
                 return  <div key={index} className="ui segment">
                           <div className="column">
                             <div className="row">
                               <div className="col-md-2">
-                                {item.toUpperCase()}
+                                {item.name.toUpperCase()}
                               </div>
                               <div className="col-md-9">
                                 <Label as='a' tag> In fridge </Label>
                               </div>
                               <div className="col-md-1" style={{"marginLeft": "-15px"}}>
-                                <CartButton item={item}
+                                <CartButton item={item.name}
                                             onAddToShoppingList={this.props.onAddToShoppingList}
                                             shoppingList={this.props.shoppingList}
                                 />
@@ -46,10 +46,10 @@ class MenuIngredientsList extends Component {
                           <div className="column">
                             <div className="row">
                               <div className="col-md-11">
-                                {/*{item.toUpperCase()}*/}
+                                {item.name.toUpperCase()}
                               </div>
                               <div className="col-md-1" style={{"marginLeft": "-15px"}}>
-                                <CartButton item={item}
+                                <CartButton item={item.name}
                                             onAddToShoppingList={this.props.onAddToShoppingList}
                                             shoppingList={this.props.shoppingList}
                                 />

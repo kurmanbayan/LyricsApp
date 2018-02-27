@@ -30,7 +30,7 @@ class ShoppingCartList extends Component {
             <Dropdown onChange={this.handleTitleChange} placeholder='Add Ingredient' value={this.state.title} fluid search selection options={options} />
           </div>
           <div className="col-md-4">
-            <button className="ui button" onClick={() => this.props.onAddToShoppingList(this.state.title)}>
+            <button className="ui button" onClick={() => this.props.onAddToShoppingList(this.state.title, false)}>
               Add
             </button>
           </div>

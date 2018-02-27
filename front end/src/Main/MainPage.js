@@ -36,7 +36,7 @@ class MainPage extends Component {
     for (let i = 0; i < menuList.length; i++) {
       var counter = 0
       for (let j = 0; j < list.length; j++) {
-        let checkList = menuList[i].ingredients.filter((data) => data.toLowerCase() === list[j].name.toLowerCase())
+        let checkList = menuList[i].ingredients.filter((data) => data.name.toLowerCase() === list[j].name.toLowerCase())
         if (checkList.length > 0) {
           counter += 1
         }
@@ -61,12 +61,15 @@ class MainPage extends Component {
 
   addToList = (name, number) => {
     let list = this.state.listOfIngredients
-    list.push({
-      id: guid(),
-      name: name,
-      number: number,
-    })
-    this.findMenu(list)
+    let filtered = list.filter((data) => data.name === name)
+    if (filtered.length === 0) {
+      list.push({
+        id: guid(),
+        name: name,
+        number: number,
+      })
+      this.findMenu(list)
+    }
   }
 
   removeIngredient = (id) => {

@@ -25,10 +25,10 @@ class MenuItem extends Component {
                 <Icon name='dropdown'/>
               </div>
               <div className="col-md-1">
-                <img className="ui mini circular image" src={this.props.data.dish_img} alt=''/>
+                <img className="ui mini circular image" src={this.props.data.imgPath} alt=''/>
               </div>
               <div className="col-md-8">
-                {this.props.data.dish_name}
+                {this.props.data.name}
               </div>
               <div className="col-md-2">
                 <Icon name="clock"/>
@@ -38,7 +38,7 @@ class MenuItem extends Component {
           </div>
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 1}>
-          <div> {this.props.data.info.desc} </div>
+          <div> {this.props.data.description} </div>
           <div style={{"fontSize": "20px", "marginTop": "20px"}}> Ingredients: </div>
           <MenuIngredientsList
             data={this.props.data}

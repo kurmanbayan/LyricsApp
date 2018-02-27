@@ -30,7 +30,7 @@ export default class RecipeList extends Component {
             <div className="col-xs-5">
                 <div className="row">
                     <div className="col-xs-12">
-                        <button onClick={} className="btn btn-success">New Recipe</button>
+                        <button className="btn btn-success">New Recipe</button>
                     </div>
                 </div>
                 <hr/>
@@ -50,5 +50,3 @@ export default class RecipeList extends Component {
 
 
 }
-
-
