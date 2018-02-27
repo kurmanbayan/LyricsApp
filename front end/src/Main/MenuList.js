@@ -9,7 +9,14 @@ class MenuList extends Component {
       <Accordion styled style={{"width": "100%"}}>
         {
           this.props.menuListSearch.map((data, index) => {
-            return <MenuItem key={index} data={data} listOfIngredients={this.props.listOfIngredients}/>
+            return <MenuItem
+                    key={index}
+                    data={data}
+                    listOfIngredients={this.props.listOfIngredients}
+                    onAddToBadge={this.props.onAddToBadge}
+                    onRemoveFromBadge={this.props.onRemoveFromBadge}
+                    onAddToShoppingList={this.props.onAddToShoppingList}
+                  />
           })
         }
       </Accordion>

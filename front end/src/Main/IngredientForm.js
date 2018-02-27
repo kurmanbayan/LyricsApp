@@ -64,7 +64,7 @@ class IngredientForm extends Component {
            <div className='ui form'>
              <div className='ui two bottom attached fields'>
                <Dropdown onChange={this.handleTitleChange} placeholder='Ingredient' value={this.state.title} search selection options={options} />
-               <input style={{"marginLeft": "5px"}} type='text' value={this.state.quantity} placeholder="Quantity" onChange={this.handleQuantityChange} />
+               <input style={{"marginLeft": "5px"}} type='text' value={this.state.quantity} placeholder="Q-ty" onChange={this.handleQuantityChange} />
              </div>
              <div className='ui two bottom attached buttons'>
                  <button className='ui primary button' onClick={this.handleUpdateCreateClick}> {submitText}</button>

@@ -87,7 +87,6 @@ class MainPage extends Component {
   }
 
   addToList = (name, number) => {
-    this.props.addToBadge()
     let list = this.state.listOfIngredients
     list.push({
       id: guid(),
@@ -98,7 +97,6 @@ class MainPage extends Component {
   }
 
   removeIngredient = (id) => {
-    this.props.removeFromBadge()
     let list = this.state.listOfIngredients.filter((data) => data.id !== id)
     this.findMenu(list)
   }
@@ -158,6 +156,9 @@ class MainPage extends Component {
           </div>
           <div className="col-md-8">
             <MenuList
+              onAddToBadge={this.props.onAddToBadge}
+              onRemoveFromBadge={this.props.onRemoveFromBadge}
+              onAddToShoppingList={this.props.onAddToShoppingList}
               listOfIngredients={this.state.listOfIngredients}
               menuListSearch={this.state.menuListSearch}
               ingredients={this.state.ingredients}

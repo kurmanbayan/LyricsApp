@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import MainPage from './Main/MainPage'
 import { Button, Icon } from 'semantic-ui-react'
+import ShoppingCartList from './ShoppingList/ShoppingCartList'
 
 function Recipes() {
   return <div> Recipes </div>
-}
-
-function ShoppingList() {
-  return <div> Shopping List </div>
 }
 
 class App extends Component {
@@ -26,9 +23,29 @@ class App extends Component {
     })
   }
 
+  handleRemoveFromList = (product) => {
+    let array = this.state.shoppingList
+    array.filter((data) => data !== product)
+    this.setState({
+      
+    })
+  }
+
   handleAddToBadge = () => {
     this.setState({
       buttonBadge: this.state.buttonBadge + 1
+    })
+  }
+
+  handleAddToShoppingList = (product) => {
+    let list = this.state.shoppingList
+    const check = list.filter((data) => data === product)
+    if (check.length === 0) {
+        list.push(product)
+        this.handleAddToBadge()
+    }
+    this.setState({
+      shoppingList: list
     })
   }
 
@@ -74,11 +91,14 @@ class App extends Component {
           <Route exact path="/" render={props => <MainPage
                                                     onAddToBadge={this.handleAddToBadge}
                                                     onRemoveFromBadge={this.handleRemoveFromBadge}
-                                                    shoppingList={this.state.shoppingList}
+                                                    onAddToShoppingList={this.handleAddToShoppingList}
                                                   />}
           />
           <Route path="/recipes" component={Recipes} />
-          <Route path="/shoppingList" component={ShoppingList} />
+          <Route path="/shoppingList" render={props => <ShoppingCartList
+                                                          shoppingList={this.state.shoppingList}
+                                                        />}
+          />
         </div>
       </Router>
     );

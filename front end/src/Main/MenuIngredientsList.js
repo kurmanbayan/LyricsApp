@@ -17,24 +17,41 @@ class MenuIngredientsList extends Component {
 
   render() {
     return (
-      <div className="ui card">
+      <div className="ui piled segments">
           {
             this.props.data.ingredients.map((item, index) => {
               if (this.isInFridge(item)) {
-                return <div className="content" key={index}>
-                          <div className="meta">
-                            <div style={{"marginBottom": "20px"}}> {item} </div>
-                            <Label style={{"marginLeft": "20px"}} key={index} as='a' tag> In fridge </Label>
+                return  <div key={index} className="ui segment">
+                          <div className="column">
+                            <div className="row">
+                              <div className="col-md-2">
+                                {item.toUpperCase()}
+                              </div>
+                              <div className="col-md-9">
+                                <Label as='a' tag> In fridge </Label>
+                              </div>
+                              <div className="col-md-1" style={{"marginLeft": "-15px"}}>
+                                <button className="ui icon button" onClick={() => this.props.onAddToShoppingList(item)}>
+                                  <i className="cart icon"></i>
+                                </button>
+                              </div>
+                            </div>
                           </div>
-                          <div className="extra content">
-                            <div className="ui basic red button">Decline</div>
-                          </div>
-                        </div>
+                       </div>
               }
               else {
-                return <div className="content" key={index}>
-                          <div className="header">
-                            {item}
+                return <div key={index} className="ui segment">
+                          <div className="column">
+                            <div className="row">
+                              <div className="col-md-11">
+                                {item.toUpperCase()}
+                              </div>
+                              <div className="col-md-1" style={{"marginLeft": "-15px"}}>
+                                <button className="ui icon button" onClick={() => this.props.onAddToShoppingList(item)}>
+                                  <i className="cart icon"></i>
+                                </button>
+                              </div>
+                            </div>
                           </div>
                        </div>
               }

@@ -39,8 +39,14 @@ class MenuItem extends Component {
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 1}>
           <div> {this.props.data.info.desc} </div>
-          <p style={{"fontSize": "20px"}}> Ingredients </p>
-          <MenuIngredientsList data={this.props.data} listOfIngredients={this.props.listOfIngredients}/>
+          <div style={{"fontSize": "20px"}}> Ingredients </div>
+          <MenuIngredientsList
+            data={this.props.data}
+            listOfIngredients={this.props.listOfIngredients}
+            onAddToBadge={this.props.onAddToBadge}
+            onRemoveFromBadge={this.props.onRemoveFromBadge}
+            onAddToShoppingList={this.props.onAddToShoppingList}
+          />
         </Accordion.Content>
       </div>
     )
