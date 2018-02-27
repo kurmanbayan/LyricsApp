@@ -32,13 +32,13 @@ class MenuItem extends Component {
               </div>
               <div className="col-md-2">
                 <Icon name="clock"/>
-                {this.props.data.info.time}
+                {this.props.data.time}
               </div>
             </div>
           </div>
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 1}>
-          <div> {this.props.data.info.desc} </div>
+          <div> {this.props.data.description} </div>
           <div style={{"fontSize": "20px"}}> Ingredients </div>
           <MenuIngredientsList
             data={this.props.data}
