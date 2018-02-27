@@ -38,6 +38,26 @@ class App extends Component {
                         amount: 10
                     }
                 ]
+            },
+            {
+                name: "Tasty Schnitzel",
+                description: "A super-tasty Schnitzel - just awesome!",
+                imgPath: "https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG",
+                time: "1 hour",
+                ingredients: [
+                    {
+                        name: "Meat",
+                        amount: 1
+                    },
+                    {
+                        name: "French fries",
+                        amount: 10
+                    },
+                    {
+                        name: "apple",
+                        amount: 10
+                    }
+                ]
             }
         ]
     }

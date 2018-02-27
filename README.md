@@ -1,9 +1,9 @@
-# We created lyrics app for kazakh music
-# All our sample music lyrics are located in array we have created in front side
+# We created Recipe Book app for hungry people, who wants prepare a meal using existing ingredients in their fridge
+#  Generally, we have 3 tabs: home, recipe, shopping list
 # Created functions are listed below:
 #   -search by params
 #   -sign in form
 #   -sign up form(including validation)
-#   -favourite tabs
-#   -youtube api for watching video
-#   -list of favourites
+#   -shopping list
+#   -manipulating with list of item(add, change, delete and etc)
+#   - can purchase
