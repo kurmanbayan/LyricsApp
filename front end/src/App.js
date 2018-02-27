@@ -3,14 +3,13 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import MainPage from './Main/MainPage'
 import { Button, Icon } from 'semantic-ui-react'
 import ShoppingCartList from './ShoppingList/ShoppingCartList'
+import Recipe from "./recipes/Recipe";
 
-function Recipes() {
-  return <div> Recipes </div>
-}
+
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props);
     this.state = {
       ingredients: [
         "eggs",
@@ -22,9 +21,31 @@ class App extends Component {
         "orange",
       ],
       buttonBadge: 0,
-      shoppingList: []
+      shoppingList: [],
+        menuList: [
+            {
+                name: "Tasty Schnitzel",
+                description: "A super-tasty Schnitzel - just awesome!",
+                imgPath: "https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG",
+                time: "1 hour",
+                ingredients: [
+                    {
+                        name: "Meat",
+                        amount: 1
+                    },
+                    {
+                        name: "French fries",
+                        amount: 10
+                    }
+                ]
+            }
+        ]
     }
+
+
+
   }
+
 
   handleRemoveFromBadge = () => {
     this.setState({
@@ -62,6 +83,7 @@ class App extends Component {
       this.handleRemoveFromBadge()
     }
   }
+
 
   render() {
     return (
@@ -108,9 +130,10 @@ class App extends Component {
                                                     onAddToBadge={this.handleAddToBadge}
                                                     onRemoveFromBadge={this.handleRemoveFromBadge}
                                                     onAddToShoppingList={this.handleAddToShoppingList}
+                                                        menuList={this.state.menuList}
                                                   />}
           />
-          <Route path="/recipes" component={Recipes} />
+          <Route path="/recipes" render={(props) => <Recipe menuList={this.state.menuList}/> }  />
           <Route path="/shoppingList" render={props => <ShoppingCartList
                                                           ingredients={this.state.ingredients}
                                                           onRemoveFromList={this.handleRemoveFromList}

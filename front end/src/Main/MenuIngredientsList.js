@@ -46,7 +46,7 @@ class MenuIngredientsList extends Component {
                           <div className="column">
                             <div className="row">
                               <div className="col-md-11">
-                                {item.toUpperCase()}
+                                {/*{item.toUpperCase()}*/}
                               </div>
                               <div className="col-md-1" style={{"marginLeft": "-15px"}}>
                                 <CartButton item={item}

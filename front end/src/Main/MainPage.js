@@ -19,26 +19,7 @@ class MainPage extends Component {
       listOfIngredients: [],
       isOpen: false,
       ingredients: props.ingredients,
-      menuList: [
-        {
-          dish_img: img,
-          dish_name: "BBQ",
-          info: {
-            desc: "Lorem ipsum dolor sit amet consectetur anau-minau",
-            time: "1 hour"
-          },
-          ingredients: ["meat", "milk", "banana", "apple"]
-        },
-        {
-          dish_img: img,
-          dish_name: "Stuffed Salmon",
-          info: {
-            desc: "Lorem ipsum dolor sit amet consectetur anau-minau",
-            time: "1 hour"
-          },
-          ingredients: ["yoghurt", "orange", "grape"]
-        }
-      ],
+      menuList: this.props.menuList,
       menuListSearch: []
     }
   }
@@ -46,7 +27,7 @@ class MainPage extends Component {
   componentDidMount() {
     this.setState({
       menuListSearch: this.state.menuList
-    })
+    });
   }
 
   findMenu = (list) => {
