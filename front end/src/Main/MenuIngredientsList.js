@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Label } from 'semantic-ui-react'
+import CartButton from './CartButton'
 
 class MenuIngredientsList extends Component {
 
@@ -31,9 +32,10 @@ class MenuIngredientsList extends Component {
                                 <Label as='a' tag> In fridge </Label>
                               </div>
                               <div className="col-md-1" style={{"marginLeft": "-15px"}}>
-                                <button className="ui icon button" onClick={() => this.props.onAddToShoppingList(item)}>
-                                  <i className="cart icon"></i>
-                                </button>
+                                <CartButton item={item}
+                                            onAddToShoppingList={this.props.onAddToShoppingList}
+                                            shoppingList={this.props.shoppingList}
+                                />
                               </div>
                             </div>
                           </div>
@@ -47,9 +49,10 @@ class MenuIngredientsList extends Component {
                                 {item.toUpperCase()}
                               </div>
                               <div className="col-md-1" style={{"marginLeft": "-15px"}}>
-                                <button className="ui icon button" onClick={() => this.props.onAddToShoppingList(item)}>
-                                  <i className="cart icon"></i>
-                                </button>
+                                <CartButton item={item}
+                                            onAddToShoppingList={this.props.onAddToShoppingList}
+                                            shoppingList={this.props.shoppingList}
+                                />
                               </div>
                             </div>
                           </div>

@@ -10,12 +10,13 @@ class MenuList extends Component {
         {
           this.props.menuListSearch.map((data, index) => {
             return <MenuItem
-                    key={index}
-                    data={data}
-                    listOfIngredients={this.props.listOfIngredients}
-                    onAddToBadge={this.props.onAddToBadge}
-                    onRemoveFromBadge={this.props.onRemoveFromBadge}
-                    onAddToShoppingList={this.props.onAddToShoppingList}
+                      key={index}
+                      data={data}
+                      listOfIngredients={this.props.listOfIngredients}
+                      onAddToBadge={this.props.onAddToBadge}
+                      onRemoveFromBadge={this.props.onRemoveFromBadge}
+                      onAddToShoppingList={this.props.onAddToShoppingList}
+                      shoppingList={this.props.shoppingList}
                   />
           })
         }

@@ -12,6 +12,15 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
+      ingredients: [
+        "eggs",
+        "meat",
+        "apple",
+        "yoghurt",
+        "milk",
+        "nuts",
+        "orange",
+      ],
       buttonBadge: 0,
       shoppingList: []
     }
@@ -25,9 +34,10 @@ class App extends Component {
 
   handleRemoveFromList = (product) => {
     let array = this.state.shoppingList
-    array.filter((data) => data !== product)
+    array = array.filter((data) => data.toLowerCase() !== product.toLowerCase())
+    this.handleRemoveFromBadge()
     this.setState({
-      
+      shoppingList: array
     })
   }
 
@@ -43,10 +53,14 @@ class App extends Component {
     if (check.length === 0) {
         list.push(product)
         this.handleAddToBadge()
+        this.setState({
+          shoppingList: list
+        })
     }
-    this.setState({
-      shoppingList: list
-    })
+    else {
+      this.handleRemoveFromList(product)
+      this.handleRemoveFromBadge()
+    }
   }
 
   render() {
@@ -89,6 +103,8 @@ class App extends Component {
           </div>
 
           <Route exact path="/" render={props => <MainPage
+                                                    shoppingList={this.state.shoppingList}
+                                                    ingredients={this.state.ingredients}
                                                     onAddToBadge={this.handleAddToBadge}
                                                     onRemoveFromBadge={this.handleRemoveFromBadge}
                                                     onAddToShoppingList={this.handleAddToShoppingList}
@@ -96,7 +112,10 @@ class App extends Component {
           />
           <Route path="/recipes" component={Recipes} />
           <Route path="/shoppingList" render={props => <ShoppingCartList
+                                                          ingredients={this.state.ingredients}
+                                                          onRemoveFromList={this.handleRemoveFromList}
                                                           shoppingList={this.state.shoppingList}
+                                                          onAddToShoppingList={this.handleAddToShoppingList}
                                                         />}
           />
         </div>

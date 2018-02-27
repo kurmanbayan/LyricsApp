@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 
 class Cart extends Component {
-
   render() {
     return (
       <div className="ui segment">
@@ -15,7 +14,7 @@ class Cart extends Component {
                 </div>
               </div>
               <div className="col-md-1">
-                <button className="ui icon button">
+                <button className="ui icon button" onClick={() => this.props.onRemoveFromList(this.props.data)}>
                   <i className="remove icon"></i>
                 </button>
               </div>

@@ -17,16 +17,8 @@ class MainPage extends Component {
     super(props)
     this.state = {
       listOfIngredients: [],
-      ingredients: [
-        "eggs",
-        "meat",
-        "apple",
-        "yoghurt",
-        "milk",
-        "nuts",
-        "orange",
-      ],
       isOpen: false,
+      ingredients: props.ingredients,
       menuList: [
         {
           dish_img: img,
@@ -156,6 +148,7 @@ class MainPage extends Component {
           </div>
           <div className="col-md-8">
             <MenuList
+              shoppingList={this.props.shoppingList}
               onAddToBadge={this.props.onAddToBadge}
               onRemoveFromBadge={this.props.onRemoveFromBadge}
               onAddToShoppingList={this.props.onAddToShoppingList}
