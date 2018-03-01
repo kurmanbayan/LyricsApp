@@ -16,7 +16,7 @@ class MainPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      listOfIngredients: [],
+      listOfIngredients: props.listOfIngredients,
       isOpen: false,
       ingredients: props.ingredients,
       menuList: this.props.menuList,
@@ -25,9 +25,7 @@ class MainPage extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      menuListSearch: this.state.menuList
-    });
+    this.findMenu(this.state.listOfIngredients)
   }
 
   findMenu = (list) => {
@@ -54,9 +52,10 @@ class MainPage extends Component {
     newAns = list.length > 0 ? newAns : menuList
     this.setState({
       menuListSearch: newAns,
-      listOfIngredients: list,
       isOpen: false,
+      listOfIngredients: list
     })
+    this.props.updateIngredientsOfList(list)
   }
 
   addToList = (name, number) => {
@@ -118,12 +117,14 @@ class MainPage extends Component {
         <div className="row">
           <div className="col-md-4">
             <EditableIngredientList
+              typesOfIngredients={this.props.typesOfIngredients}
               saveEditedIngredient={this.saveEditedIngredient}
               listOfIngredients={this.state.listOfIngredients}
               removeIngredient={this.removeIngredient}
               ingredients={this.state.ingredients}
             />
             <ToggleableIngredientForm
+              typesOfIngredients={this.props.typesOfIngredients}
               isOpen={this.state.isOpen}
               addToList={this.addToList}
               onOpenChange={this.handleChangeOpen}
@@ -132,6 +133,10 @@ class MainPage extends Component {
           </div>
           <div className="col-md-8">
             <MenuList
+              typesOfIngredients={this.props.typesOfIngredients}
+              removeFromFavourites={this.props.removeFromFavourites}
+              favouritesList={this.props.favouritesList}
+              onAddToFavourites={this.props.addToFavourites}
               shoppingList={this.props.shoppingList}
               onAddToBadge={this.props.onAddToBadge}
               onRemoveFromBadge={this.props.onRemoveFromBadge}

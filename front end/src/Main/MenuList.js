@@ -12,11 +12,14 @@ class MenuList extends Component {
             return <MenuItem
                       key={index}
                       data={data}
+                      removeFromFavourites={this.props.removeFromFavourites}
+                      favouritesList={this.props.favouritesList}
                       listOfIngredients={this.props.listOfIngredients}
                       onAddToBadge={this.props.onAddToBadge}
                       onRemoveFromBadge={this.props.onRemoveFromBadge}
                       onAddToShoppingList={this.props.onAddToShoppingList}
                       shoppingList={this.props.shoppingList}
+                      onAddToFavourites={this.props.onAddToFavourites}
                   />
           })
         }

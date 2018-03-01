@@ -12,6 +12,7 @@ class EditableIngredientList extends Component {
                       ingredients={this.props.ingredients}
                       key={index}
                       data={data}
+                      typesOfIngredients={this.props.typesOfIngredients}
                       removeIngredient={this.props.removeIngredient}
                       saveEditedIngredient={this.props.saveEditedIngredient}
                     />
