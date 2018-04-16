@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Grid, Menu, Segment, Divider, Rating, Icon } from 'semantic-ui-react'
+import { Grid, Menu, Segment, Divider, Icon } from 'semantic-ui-react'
 import AddInfoList from './AddInfoList'
 
 class Favourite extends Component {

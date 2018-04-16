@@ -47,7 +47,7 @@ class AddInfoList extends Component {
               return <div key={index} className="col-md-3">
                 <div className="ui card">
                   <div className="image">
-                    <img src={data.imgPath} />
+                    <img src={data.imgPath} alt=""/>
                   </div>
                   <div className="content">
                     <a className="header"> {data.name} </a>

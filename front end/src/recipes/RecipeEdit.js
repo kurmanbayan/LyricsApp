@@ -1,23 +1,22 @@
 import React, {Component} from 'react';
-import _ from "lodash";
 
 export default class RecipeEdit extends Component {
 
     render()
     {
         return (
-            <div className="col-xs-7">
+            <div className="col-7">
                 <div className="row">
-                    <div className="col-xs-12">
+                    <div className="col-12">
                         <form>
                             <div className="row">
-                                <div className="col-xs-12">
+                                <div className="col-12">
                                     <button className="btn btn-success">Save</button>
                                     <button className="btn btn-danger" onClick={this.props.onClickCancel}>Cancel</button>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-xs-12">
+                                <div className="col-12">
                                     <div className="form-group">
                                         <label htmlFor="name">Name</label>
                                         <input type="text"
@@ -29,7 +28,7 @@ export default class RecipeEdit extends Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-xs-12">
+                                <div className="col-12">
                                     <div className="form-group">
                                         <label htmlFor="imagePath">Image URL</label>
                                         <input type="text"
@@ -43,13 +42,13 @@ export default class RecipeEdit extends Component {
                             </div>
 
                             <div className="row">
-                                <div className="col-xs-12">
-                                    <img src={this.props.currentRecipe.imgPath} alt={this.props.currentRecipe.name}  className="img-responsive"/>
+                                <div className="col-12">
+                                    <img src={this.props.currentRecipe.imgPath} alt={this.props.currentRecipe.name} style={{maxHeight: "150px"}} className="img-fluid"/>
                                    </div>
                                 </div>
 
                             <div className="row">
-                                <div className="col-xs-12">
+                                <div className="col-12">
                                     <div className="form-group">
                                         <label htmlFor="description">Description</label>
                                         <textarea type="text"
@@ -63,25 +62,25 @@ export default class RecipeEdit extends Component {
 
 
                             <div className="row">
-                                <div className="col-xs-12">
+                                <div className="col-12">
                                     {this.props.currentRecipe.ingredients.map((ingredient, index)=>{
                                         return <div key={index} className="row" style={{"margin-top": "10px"}}>
 
-                                        <div className="col-xs-8">
+                                        <div className="col-8">
                                         <input type="text"
                                         className="form-control"
                                         ref="ingredientName"
                                         defaultValue={ingredient.name}/>
                                         </div>
 
-                                        <div className="col-xs-2">
+                                        <div className="col-2">
                                         <input type="number"
                                         className="form-control"
                                         ref="ingredientaAmount"
                                         defaultValue={ingredient.amount}/>
                                         </div>
 
-                                        <div className="col-xs-2">
+                                        <div className="col-2">
                                         <button type="button" className="btn btn-danger">X</button>
                                         </div>
                                         </div>
@@ -90,7 +89,7 @@ export default class RecipeEdit extends Component {
                                     <hr/>
 
                                         <div className="row">
-                                            <div className="col-xs-12">
+                                            <div className="col-12">
                                                     <button type="button" className="btn btn-success" >Add Ingredient</button>
                                             </div>
                                         </div>
@@ -110,5 +109,3 @@ export default class RecipeEdit extends Component {
 
 
 }
-
-

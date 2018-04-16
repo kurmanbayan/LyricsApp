@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 import RecipeList from "./RecipeList"
 import RecipeDetail from "./RecipeDetail";
 import RecipeEdit from "./RecipeEdit"
-import _ from "lodash";
-
-
-let currentRecipe = {};
-
 
 
  export default class Recipe extends Component {
