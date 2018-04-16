@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import './css/main.css'
-import img from './images/randomImg.jpg'
 import EditableIngredientList from './EditableIngredientList'
 import ToggleableIngredientForm from './ToggleableIngredientForm'
 import MenuList from './MenuList'

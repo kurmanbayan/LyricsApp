@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
-import _ from "lodash";
 
 export default class RecipeDetail extends Component {
-
-
-
 
     renderDetail(){
         if(this.props.isItemClicked){
@@ -50,7 +46,7 @@ export default class RecipeDetail extends Component {
                 </div>
 
             );
-            
+
         }
 
         return(
@@ -86,5 +82,3 @@ export default class RecipeDetail extends Component {
 
 
 }
-
-

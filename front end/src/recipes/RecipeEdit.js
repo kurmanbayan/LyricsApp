@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import _ from "lodash";
 
 export default class RecipeEdit extends Component {
 
@@ -110,5 +109,3 @@ export default class RecipeEdit extends Component {
 
 
 }
-
-

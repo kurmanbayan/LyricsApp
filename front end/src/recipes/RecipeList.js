@@ -5,13 +5,6 @@ import RecipeListItem from "./RecipeListItem";
 
 export default class RecipeList extends Component {
 
-    constructor(props){
-        super(props);
-
-
-
-    }
-
     showRecipes() {
         return _.map(this.props.recipes, (recipe, i) =>
             <RecipeListItem
@@ -19,11 +12,7 @@ export default class RecipeList extends Component {
             key={i}
             {...this.props} {...recipe}/>);
     }
-
-
-
-
-
+    
     render()
     {
         return (
