@@ -14,6 +14,10 @@ class MenuItem extends Component {
     this.setState({ activeIndex: newIndex })
   }
 
+  ratingChanged = (e) => {
+    console.log(e.target.getAttribute('aria-posinset'))
+  }
+
   render() {
     const { activeIndex } = this.state
 
@@ -44,7 +48,7 @@ class MenuItem extends Component {
             <br/>
             <div className="row">
               <div className="col-md-11">
-                <Rating maxRating={5} defaultRating={3} icon='star' />
+                <Rating onClick={this.ratingChanged} maxRating={5} defaultRating={3} icon='star' />
               </div>
               <div className="col-md-1">
                 <FavouriteButton
@@ -67,6 +71,8 @@ class MenuItem extends Component {
             onAddToShoppingList={this.props.onAddToShoppingList}
             shoppingList={this.props.shoppingList}
           />
+          <div style={{"fontSize": "14px"}}> Average Rating: {this.props.data.rating} </div>
+          <div style={{"fontSize": "14px"}}> Voted: {this.props.data.voted} </div>
         </Accordion.Content>
       </div>
     )

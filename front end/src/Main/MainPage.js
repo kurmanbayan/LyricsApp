@@ -18,7 +18,7 @@ class MainPage extends Component {
       listOfIngredients: props.listOfIngredients,
       isOpen: false,
       ingredients: props.ingredients,
-      menuList: this.props.menuList,
+      menuList: props.menuList,
       menuListSearch: []
     }
   }
@@ -75,26 +75,6 @@ class MainPage extends Component {
     this.findMenu(list)
   }
 
-  getIndexById = (id) => {
-    let list = this.state.listOfIngredients
-    let index = 0
-    for (let ind = 0; ind < list.length; ind++) {
-      if (list[ind].id === id) {
-        index = ind
-        break
-      }
-    }
-    return index
-  }
-
-  saveEditedIngredient = (data) => {
-    let list = this.state.listOfIngredients
-    let index = this.getIndexById(data.id)
-    list[index].number = data.number
-    list[index].name = data.name
-    this.findMenu(list)
-  }
-
   handleChangeOpen = () => {
     this.setState({
       isOpen: !this.state.isOpen
@@ -117,7 +97,6 @@ class MainPage extends Component {
           <div className="col-md-4">
             <EditableIngredientList
               typesOfIngredients={this.props.typesOfIngredients}
-              saveEditedIngredient={this.saveEditedIngredient}
               listOfIngredients={this.state.listOfIngredients}
               removeIngredient={this.removeIngredient}
               ingredients={this.state.ingredients}
