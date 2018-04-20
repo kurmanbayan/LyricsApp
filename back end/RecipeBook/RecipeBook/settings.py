@@ -79,9 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'RecipeBook.wsgi.application'
 
-CORS_ORIGIN_WHITELIST = (
-    'localhost',
-)
 
 
 # Database
@@ -152,3 +149,6 @@ STATIC_URL = '/static/'
 # }
 
 # {"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNTI0MjE1OTg2LCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjF9.ybY7h-vPtH5CWzC-Dq42XqcdbASTTwdllka-lpnJRFc"}
+
+
+CORS_ORIGIN_WHITELIST = 'localhost:3000'

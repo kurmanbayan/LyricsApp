@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import _ from "lodash";
+import IngredientListItem from "./IngredientListItem";
 
 export default class RecipeEdit extends Component {
 
@@ -77,28 +79,7 @@ export default class RecipeEdit extends Component {
 
                         <div className="row">
                             <div className="col-12">
-                                {this.props.currentRecipe.ingredients.map((ingredient, index) => {
-                                    return <div key={index} className="row" style={{"marginTop": "10px"}}>
-
-                                        <div className="col-8">
-                                            <input type="text"
-                                                   className="form-control"
-                                                   ref="editIngredientName"
-                                                   defaultValue={ingredient.name}/>
-                                        </div>
-
-                                        <div className="col-2">
-                                            <input type="number"
-                                                   className="form-control"
-                                                   ref="editIngredientAmount"
-                                                   defaultValue={ingredient.amount}/>
-                                        </div>
-
-                                        <div className="col-2">
-                                            <button type="button" className="btn btn-danger">X</button>
-                                        </div>
-                                    </div>
-                                })}
+                                {this.showIngredients()}
 
 
                             </div>
@@ -139,6 +120,17 @@ export default class RecipeEdit extends Component {
         // //     graduateFrom: this.graduateFrom
         // // });
 
+    }
+
+    showIngredients() {
+
+        // this.props.currentRecipe.ingredients.map((ingredient, index)
+
+        return _.map(this.props.currentRecipe.ingredients, (ingredient, i) =>
+            <IngredientListItem
+
+            key={i}
+            {...this.props} {...ingredient}/>);
     }
 
 
