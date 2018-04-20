@@ -44,5 +44,5 @@ def index(request):
     return JsonResponse({"menuList": list(resultJson), "ingredients": list(ingredientsList)}, safe=False)
 
 def get_last_popular(request, search_id):
-    recipes = Recipe.objects.values()
+    recipes = Recipe.objects.values().order_by('-created_at')[0:4]
     return JsonResponse(list(recipes), safe=False)
