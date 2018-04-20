@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom'
 import MainPage from './Main/MainPage'
 import { Button, Icon } from 'semantic-ui-react'
 import ShoppingCartList from './ShoppingList/ShoppingCartList'
@@ -18,7 +18,9 @@ function guid() {
 class App extends Component {
   constructor(props) {
     super(props);
+    const token = localStorage.getItem('token')
     this.state = {
+        isAuthenticated: token && token.length > 3,
       listOfIngredients: [],
         isToggleLogin: false,
       favouritesList: [],
@@ -341,9 +343,17 @@ class App extends Component {
 
 
   render() {
+
+
+
     return (
+
+
       <Router>
-        <div>
+          <div>
+              {this.state.isAuthenticated ? <Redirect to={"/"}/> : null}
+
+
           <div className="ui small menu">
             <Link to="/" className="item">
               Home
@@ -427,9 +437,10 @@ class App extends Component {
   onClickUser(){
         this.setState({
             isToggleLogin: true
-        });
+        })
 
     }
+
 
     onSetStateIsToggleLogin(){
         this.setState({
