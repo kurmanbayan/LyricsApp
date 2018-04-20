@@ -14,8 +14,8 @@ export default class CreateRecipes extends Component {
                         <div className="col-12">
                             <img src={this.props.currentRecipe.imgPath}
                                  alt={this.props.currentRecipe.name}
-                                 className="img-responsive"
-                                 style={{Heigh: "300px"}}/>
+                                 className="img-fluid"
+                                 style={{maxHeight: "200px"}}/>
                         </div>
                     </div>
                     <div className="row">

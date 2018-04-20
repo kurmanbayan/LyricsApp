@@ -4,7 +4,8 @@ import MainPage from './Main/MainPage'
 import { Button, Icon } from 'semantic-ui-react'
 import ShoppingCartList from './ShoppingList/ShoppingCartList'
 import Recipe from "./recipes/Recipe";
-import Favourite from "./Favourites/Favourite"
+import Favourite from "./Favourites/Favourite";
+import LoginForm from "./login/LoginForm";
 
 
 function guid() {
@@ -19,6 +20,7 @@ class App extends Component {
     super(props);
     this.state = {
       listOfIngredients: [],
+        isToggleLogin: false,
       favouritesList: [],
       ingredients: [
         "eggs",
@@ -30,7 +32,7 @@ class App extends Component {
         "orange",
       ],
       typesOfIngredients: [
-        "dairy": [
+        "dairy" : [
           "butter",
           "eggs",
           "milk",
@@ -375,7 +377,7 @@ class App extends Component {
                  </Button.Group>
               </div>
               <div className="item">
-                  <div className="ui primary button">Sign In</div>
+                  <div className="ui primary button" onClick={this.onClickUser.bind(this)}>Sign In</div>
               </div>
             </div>
           </div>
@@ -409,10 +411,35 @@ class App extends Component {
                                                           onRemoveFromFavourites={this.removeFromFavourites}
                                                         />}
           />
+
+            {this.state.isToggleLogin ? <LoginForm onSetStateIsToggleLogin = {this.onSetStateIsToggleLogin.bind(this)}
+                                                   isToggleLogin = {this.state.isToggleLogin}
+                /> : null}
+
+
         </div>
+
+
       </Router>
     );
   }
+
+  onClickUser(){
+        this.setState({
+            isToggleLogin: true
+        });
+
+    }
+
+    onSetStateIsToggleLogin(){
+        this.setState({
+            isToggleLogin: false
+        });
+
+
+    }
+
+
 }
 
 export default App;

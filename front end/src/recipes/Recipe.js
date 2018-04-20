@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import RecipeList from "./RecipeList"
 import RecipeDetail from "./RecipeDetail";
-import RecipeEdit from "./RecipeEdit"
+import RecipeEdit from "./RecipeEdit";
+import _ from "lodash"
 
 
  export default class Recipe extends Component {
@@ -15,19 +16,6 @@ import RecipeEdit from "./RecipeEdit"
             isNewRecipe: false,
             recipes: props.menuList,
             currentRecipe: {
-                name: "",
-                description: "",
-                imgPath: "",
-                ingredients: [
-                    {
-                        name: "",
-                        amount: null
-                    },
-                    {
-                        name: "",
-                        amount: null
-                    }
-                ]
             }
         };
 
@@ -44,15 +32,18 @@ import RecipeEdit from "./RecipeEdit"
                                 onClickItem={this.onClickItem.bind(this)}
                                 onCreateRecipe = {this.onCreateRecipe.bind(this)}/>
 
-                    {this.state.isEditing ? <RecipeEdit
+                    {this.state.isEditing ?
+                        <RecipeEdit
                             onClickCancel = {this.onClickCancel.bind(this)}
                             currentRecipe = {this.state.currentRecipe}
+                            saveRecipe = {this.saveRecipe.bind(this)}
                         /> : <RecipeDetail
                             recipes={this.state.recipes}
                             isItemClicked={this.state.isItemClicked}
                             currentRecipe = {this.state.currentRecipe}
                             onClickEdit = {this.onClickEdit.bind(this)}
                             onClickDelete = {this.onClickDelete.bind(this)}
+
 
                         /> }
 
@@ -96,14 +87,15 @@ import RecipeEdit from "./RecipeEdit"
          });
      }
 
-     onClickDelete(item){
+     onClickDelete(item_id){
+        _.remove(this.state.recipes, recipe => recipe.id == item_id);
+
+        this.setState({
+            recipes: this.state.recipes
+        })
 
 
-     // _.remove(this.state.recipes,recipe => recipe.name === item );
 
-
-
-          console.log("deleted", + item);
      }
 
 
@@ -127,26 +119,49 @@ import RecipeEdit from "./RecipeEdit"
     //
     // }
     //
-    // saveContact(oContactName,nContact){
-    //
-    //
-    //     const newName = nContact.editNameInput.value;
-    //     const newPhone = nContact.editPhoneInput.value;
-    //     const newCity = nContact.editCityInput.value;
-    //     const newGrad = nContact.editGradInput.value;
-    //
-    //
-    //     const foundContact = this.state.contacts.find(contact => contact.name === oContactName);
-    //     foundContact.name = newName;
-    //     foundContact.phone = newPhone;
-    //     foundContact.city = newCity;
-    //     foundContact.graduateFrom = newGrad;
-    //
-    //     this.setState({contacts: this.state.contacts});
-    //
-    //
-    //
-    // }
+    saveRecipe(oRecipe,nRecipe){
+
+
+
+        // console.log(nRecipe.editNameInput.value);
+        // console.log(nRecipe.editIngredientName.value);
+        //
+        const nName = nRecipe.editNameInput.value;
+        const nImagePath = nRecipe.editImageInput.value;
+        const nDescription = nRecipe.editDescriptionInput.value;
+        const nIngredientName = nRecipe.editIngredientName.value;
+        const nIngredientAmout = nRecipe.editIngredientAmount.value;
+
+        const foundRecipe = this.state.recipes.find(recipe=> recipe.id == oRecipe.id );
+        foundRecipe.name = nName;
+        foundRecipe.imgPath = nImagePath;
+        foundRecipe.description = nDescription;
+        foundRecipe.ingredients.amount = nIngredientAmout;
+        foundRecipe.ingredients.name = nIngredientName;
+
+        this.setState({
+            contacts: this.state.contacts,
+            isEditing: false
+        })
+
+
+
+
+
+
+        //
+        //
+        // const foundContact = this.state.contacts.find(contact => contact.name === oContactName);
+        // foundContact.name = newName;
+        // foundContact.phone = newPhone;
+        // foundContact.city = newCity;
+        // foundContact.graduateFrom = newGrad;
+        //
+        // this.setState({contacts: this.state.contacts});
+
+
+
+    }
     //
     // deleteContact(contactToDelete){
     //     _.remove(this.state.contacts,contact => contact.name === contactToDelete);

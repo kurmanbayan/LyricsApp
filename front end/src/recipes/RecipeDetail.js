@@ -24,7 +24,7 @@ export default class RecipeDetail extends Component {
                         <div className="col-12">
                             <button className="btn btn-primary" onClick={this.onClickToShoppingList.bind(this)}>To shopping list</button>
                             <button className="btn btn-default" onClick={this.props.onClickEdit.bind(this)}>Edit Recipe</button>
-                            <button className="btn btn-danger" onClick={this.props.onClickDelete.bind(this,this.props.currentRecipe)}>Delete Recipe</button>
+                            <button className="btn btn-danger" onClick={this.props.onClickDelete.bind(this, this.props.currentRecipe.id)}>Delete Recipe</button>
                         </div>
                     </div>
                     <div className="row">
@@ -76,8 +76,15 @@ export default class RecipeDetail extends Component {
 
 
     onClickToShoppingList(){
-        console.log(this.props.currentRecipe);
+        console.log(this.props.currentRecipe.id);
     }
+
+    // onClickToDelete(){
+    //     this.props.onClickDelete(this.props.currentRecipe.id);
+    //     console.log("deailda: " + this.props.currentRecipe.id)
+    //
+    //
+    // }
 
 
 
