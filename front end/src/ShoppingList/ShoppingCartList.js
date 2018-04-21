@@ -24,8 +24,13 @@ class ShoppingCartList extends Component {
       return options.push(el)
     })
     return (
-      <div className="column">
-        <div className="row" style={{"marginLeft": "30%", "marginRight": "25%"}}>
+
+        <div className="container">
+
+            {this.props.isAuthenticated ?
+
+                <div>
+                  <div className="row" style={{"marginLeft": "30%", "marginRight": "25%"}}>
           <div className="col-md-8">
             <Dropdown onChange={this.handleTitleChange} placeholder='Add Ingredient' value={this.state.title} fluid search selection options={options} />
           </div>
@@ -50,7 +55,34 @@ class ShoppingCartList extends Component {
             }
           </div>
         </div>
-      </div>
+
+                </div>
+
+
+
+                :
+                <div className="row">
+                    <div className="col-md-8-col-md-offset-2">
+                        <h2>CAN NOT GET ACCESS! Please <a className="btn btn-success"
+                                                          onClick={this.props.onClickUser.bind(this)}>Sign In</a></h2>
+                    </div>
+                </div>}
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
     )
   }
 }

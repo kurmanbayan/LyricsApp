@@ -1,5 +1,15 @@
 import React, {Component} from 'react';
 import _ from "lodash";
+import {
+  FormBuilder,
+  AbstractControl,
+  Validators,
+  FormGroup,
+  FormArray,
+  FieldGroup,
+  FieldControl,
+  FieldArray
+} from "react-reactive-form"
 
 
 export default class IngredientListItem extends Component {
@@ -27,7 +37,7 @@ export default class IngredientListItem extends Component {
                                         </div>
 
                                         <div className="col-2">
-                                            <button type="button" className="btn btn-danger">X</button>
+                                            <button onClick={this.props.onClickIngredientDelete.bind(this,this.props)} type="button" className="btn btn-danger">X</button>
                                         </div>
             </div>
 

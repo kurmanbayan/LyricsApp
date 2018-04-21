@@ -18,9 +18,9 @@ function guid() {
 class App extends Component {
   constructor(props) {
     super(props);
-    const token = localStorage.getItem('token')
+
     this.state = {
-        isAuthenticated: token && token.length > 3,
+        isAuthenticated: false,
       listOfIngredients: [],
         isToggleLogin: false,
       favouritesList: [],
@@ -280,6 +280,11 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+
+
+  }
+
   addToFavourites = (list) => {
     let favor = this.state.favouritesList
     favor.push(list)
@@ -351,7 +356,7 @@ class App extends Component {
 
       <Router>
           <div>
-              {this.state.isAuthenticated ? <Redirect to={"/"}/> : null}
+              {this.state.isAuthenticated ? <Redirect to={"/"}/>  : null}
 
 
           <div className="ui small menu">
@@ -387,7 +392,10 @@ class App extends Component {
                  </Button.Group>
               </div>
               <div className="item">
-                  <div className="ui primary button" onClick={this.onClickUser.bind(this)}>Sign In</div>
+                  {!this.state.isAuthenticated ? <div className="ui primary button" onClick={this.onClickUser.bind(this)}>Sign In</div> :
+                    <div className="ui primary button" onClick={this.logout.bind(this)}>Logout</div>
+                  }
+
               </div>
             </div>
           </div>
@@ -405,20 +413,27 @@ class App extends Component {
                                                     menuList={this.state.menuList}
                                                     listOfIngredients={this.state.listOfIngredients}
                                                     updateIngredientsOfList={this.updateIngredientsOfList}
+                                                    isAuthenticated = {this.state.isAuthenticated}
                                                   />}
           />
-          <Route path="/recipes" render={(props) => <Recipe menuList={this.state.menuList}/> }  />
+          <Route path="/recipes" render={(props) => <Recipe menuList={this.state.menuList}
+                                                            onClickUser={this.onClickUser.bind(this)}
+                                                            isAuthenticated = {this.state.isAuthenticated} />}  />
           <Route path="/shoppingList" render={props => <ShoppingCartList
                                                           ingredients={this.state.ingredients}
                                                           onRemoveFromList={this.handleRemoveFromList}
                                                           shoppingList={this.state.shoppingList}
                                                           onAddToShoppingList={this.handleAddToShoppingList}
+                                                          onClickUser={this.onClickUser.bind(this)}
+                                                            isAuthenticated = {this.state.isAuthenticated}
                                                         />}
           />
-          <Route path="/favourites" render={props => <Favourite
+               <Route path="/favourites" render={props => <Favourite
                                                           menuList={this.state.menuList}
                                                           favouritesList={this.state.favouritesList}
                                                           onRemoveFromFavourites={this.removeFromFavourites}
+                                                          onClickUser={this.onClickUser.bind(this)}
+                                                          isAuthenticated = {this.state.isAuthenticated}
                                                         />}
           />
 
@@ -447,7 +462,24 @@ class App extends Component {
             isToggleLogin: false
         });
 
+        const token = localStorage.getItem('token');
 
+      if(token && token.length>3){
+      this.setState({
+           isAuthenticated: true
+      })
+      }
+
+
+
+    }
+
+    logout(){
+      localStorage.setItem('token','');
+      localStorage.clear();
+      this.setState({
+          isAuthenticated: false
+      })
     }
 
 

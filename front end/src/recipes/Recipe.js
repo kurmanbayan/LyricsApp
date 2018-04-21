@@ -23,20 +23,25 @@ import _ from "lodash"
 
 
 
-
     render(){
         return(
+
+
             <div className="container">
-                <div className="row">
-                    <RecipeList recipes={this.state.recipes}
+
+                    {this.props.isAuthenticated ? <div className="row">
+                        <RecipeList recipes={this.state.recipes}
                                 onClickItem={this.onClickItem.bind(this)}
-                                onCreateRecipe = {this.onCreateRecipe.bind(this)}/>
+                                onCreateRecipe = {this.onCreateRecipe.bind(this)}
+                                />
 
                     {this.state.isEditing ?
                         <RecipeEdit
                             onClickCancel = {this.onClickCancel.bind(this)}
                             currentRecipe = {this.state.currentRecipe}
                             saveRecipe = {this.saveRecipe.bind(this)}
+                                onClickIngredientDelete = {this.onClickIngredientDelete.bind(this)}
+
                         /> : <RecipeDetail
                             recipes={this.state.recipes}
                             isItemClicked={this.state.isItemClicked}
@@ -45,11 +50,15 @@ import _ from "lodash"
                             onClickDelete = {this.onClickDelete.bind(this)}
 
 
-                        /> }
+                        />}
+                        </div> :
+                            <div class="row">
+                        <div className="col-md-8-col-md-offset-2">
+                          <h2>CAN NOT GET ACCESS! Please <a className="btn btn-success" onClick={this.props.onClickUser.bind(this)}>Sign In</a></h2>
+                      </div>
+                            </div>}
 
 
-
-                </div>
 
 
 
@@ -93,10 +102,30 @@ import _ from "lodash"
         this.setState({
             recipes: this.state.recipes
         })
-
-
-
      }
+
+     onClickIngredientDelete(ingredientToDelete){
+
+        _.map(this.state.recipes, recipe =>
+                _.remove(recipe.ingredients, ingredient =>
+                    ingredient.name == ingredientToDelete.name
+
+
+
+     )
+
+        );
+
+         console.log(ingredientToDelete.id);
+
+
+        this.setState({
+            recipes: this.state.recipes
+        })
+
+        }
+
+
 
 
     // updateSearch(e){

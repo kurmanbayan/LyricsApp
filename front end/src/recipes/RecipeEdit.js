@@ -130,7 +130,7 @@ export default class RecipeEdit extends Component {
             <IngredientListItem
 
             key={i}
-            {...this.props} {...ingredient}/>);
+            {...this.props} {...ingredient} id = {i}/>);
     }
 
 
