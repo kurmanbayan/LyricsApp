@@ -332,7 +332,37 @@ export default class LoginForm extends Component{
                     console.log(this.state.user);
 
                     createUser(this.state.user).then(response => {
-                        console.log("Hey i got data after send post", response);
+
+                        login(response.data.email, response.data.password)
+                        .then(response => {
+                            this.setState({
+                                message: {
+                                    type: "success",
+                                    message: "Login successfully"
+                                }
+
+                            });
+
+
+                            localStorage.setItem('token',response.data.token);
+                            this.props.onSetStateIsToggleLogin();
+                            this.props.getUserName(response.data)
+                        })
+                        .catch(err => {
+
+                            this.setState({
+                                message: {
+                                    type: "error",
+                                    message: "An error login!"
+                                }
+                            });
+
+                            console.log(err)
+                        })
+
+
+
+
                     })
 
 

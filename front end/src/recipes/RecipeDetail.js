@@ -33,16 +33,16 @@ export default class RecipeDetail extends Component {
                         </div>
                     </div>
 
-                    <div className="row">
-                        <div className="col-12">
-                            <ul className="list-group">
-                                {this.props.currentRecipe.ingredients.map(function(ingredient, i) {
-                                    return <li className="list-group-item" key={i}>{ingredient.name} - {ingredient.amount}</li>
-                                })
-                                }
-                            </ul>
-                        </div>
-                    </div>
+                    {/*<div className="row">*/}
+                        {/*<div className="col-12">*/}
+                            {/*<ul className="list-group">*/}
+                                {/*{this.props.currentRecipe.ingredients.map(function(ingredient, i) {*/}
+                                    {/*return <li className="list-group-item" key={i}>{ingredient.name} - {ingredient.amount}</li>*/}
+                                {/*})*/}
+                                {/*}*/}
+                            {/*</ul>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
 
                 </div>
 

@@ -20,6 +20,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+        user: "",
         isAuthenticated: false,
       listOfIngredients: [],
         isToggleLogin: false,
@@ -369,6 +370,10 @@ class App extends Component {
             <Link to="/favourites" className="item">
               Favourites
             </Link>
+              {this.state.isAuthenticated ? <div>
+                  Hello {this.state.user.username}
+              </div> : null}
+
             <div className="right menu">
               <div className="ui dropdown item">
                 Language <i className="dropdown icon"></i>
@@ -479,6 +484,13 @@ class App extends Component {
       localStorage.clear();
       this.setState({
           isAuthenticated: false
+      })
+    }
+
+    getUserName(user){
+      console.log(user)
+      this.setState({
+          user: user
       })
     }
 

@@ -3,10 +3,11 @@ import RecipeList from "./RecipeList"
 import RecipeDetail from "./RecipeDetail";
 import RecipeEdit from "./RecipeEdit";
 import _ from "lodash"
+import axios from "axios";
 
 
  export default class Recipe extends Component {
-
+// props.menuList
     constructor(props){
         super(props);
 
@@ -14,11 +15,21 @@ import _ from "lodash"
             isItemClicked: false,
             isEditing: false,
             isNewRecipe: false,
-            recipes: props.menuList,
+            recipes: "",
             currentRecipe: {
             }
         };
 
+    }
+
+    componentWillMount(){
+        let url = "http://127.0.0.1:8000/api/recipe"
+        axios.get(url).then(response => {
+            this.setState({
+                recipes: response.data
+            })
+            console.log(response.data);
+        })
     }
 
 
