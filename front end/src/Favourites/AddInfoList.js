@@ -56,13 +56,13 @@ class AddInfoList extends Component {
                       <span className="date">{data.time}</span>
                     </div>
                     <div className="description">
-                      {data.description}
+                      mini description
                     </div>
                   </div>
                   <div className="extra content">
                     <a>
                       <i className="like icon"></i>
-                      {data.voted}
+                      22 likes
                     </a>
                   </div>
                 </div>

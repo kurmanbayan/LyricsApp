@@ -15,7 +15,7 @@ export default class RecipeListItem extends Component {
                     <p className="list-group-item-text">{this.props.description}</p>
                 </div>
                 <span className="pull-right">
-                    <img src={this.props.imgPath} alt={this.props.name} className="img-fluid" style={{height: "50px"}}/>
+                    <img src={this.props.imgPath} alt={this.props.name} className="img-responsive" style={{height: "50px"}}/>
                 </span>
             </a>
 

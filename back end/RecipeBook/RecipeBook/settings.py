@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-from rest_framework.settings import api_settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,9 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api',
-    'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -75,7 +73,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'RecipeBook.wsgi.application'
-
 
 
 # Database
@@ -126,26 +123,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# REST_FRAMEWORK = {
-#     'DEFAULT_RENDERER_CLASSES': (
-#         'rest_framework.renderers.JSONRenderer',
-#         'rest_framework.renderers.BrowsableAPIRenderer'
-#     ),
-#     'DEFAULT_PARSER_CLASSES': (
-#         'rest_framework.parsers.JSONParser',
-#     ),
-#     'DEFAULT_AUTHENTICATION_CLASSES' : (
-#     # 'rest_framework.authentication.SessionAuthentication',
-# 'rest_framework_jwt.authentication.JSONWebTokenAuthentication'
-#     # 'rest_framework.authentication.BasicAuthentication'
-# ),
-#     'DEFAULT_PERMISSION_CLASSES' : (
-#         'rest_framework.permissions.AllowAny'
-#     )
-# }
-
-# {"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNTI0MjE1OTg2LCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOjF9.ybY7h-vPtH5CWzC-Dq42XqcdbASTTwdllka-lpnJRFc"}
-
-
-CORS_ORIGIN_WHITELIST = 'localhost:3000'

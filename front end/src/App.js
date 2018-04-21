@@ -6,7 +6,7 @@ import ShoppingCartList from './ShoppingList/ShoppingCartList'
 import Recipe from "./recipes/Recipe";
 import Favourite from "./Favourites/Favourite"
 import Request from 'superagent'
-import Main from './Home/Main'
+import Home from './Home/Main'
 
 class App extends Component {
   constructor(props) {
@@ -30,29 +30,6 @@ class App extends Component {
         menuList: obj.menuList,
         ingredients: obj.ingredients,
         isRecieved: true
-      })
-    })
-  }
-
-  changeRating = (id, rating) => {
-    let list = this.state.menuList
-    let index = 0
-    for(let ind = 0; ind < list.length; ind++) {
-      if (list[ind].id === id) {
-        index = ind
-        break;
-      }
-    }
-    list[index].rating = Math.round((list[index].rating * list[index].voted + parseInt(rating, 10)) / (list[index].voted + 1) * 10) / 10;
-    list[index].voted += 1
-
-    Request.post(this.state.url + 'rating/' + id + '/')
-    .type("form")
-    .send({"voted": list[index].voted})
-    .send({"average": list[index].rating})
-    .then((callback) => {
-      this.setState({
-        menuList: list
       })
     })
   }
@@ -165,7 +142,7 @@ class App extends Component {
               </div>
             </div>
 
-            <Route exact path="/" component={Main} />
+            <Route exact path="/" component={Home} />
 
             <Route path="/search" render={props => <MainPage
                                                       typesOfIngredients={this.typesOfIngredients}
@@ -180,7 +157,6 @@ class App extends Component {
                                                       menuList={this.state.menuList}
                                                       listOfIngredients={this.state.listOfIngredients}
                                                       updateIngredientsOfList={this.updateIngredientsOfList}
-                                                      onRatingChange = {this.changeRating}
                                                     />}
             />
             <Route path="/recipes" render={(props) => <Recipe menuList={this.state.menuList}/> }  />

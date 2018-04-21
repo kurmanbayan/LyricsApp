@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models.functions import ExtractMonth
-from api.serializers import RecipeSerializer, IngredientSerializer
+from api.serializers import RecipeSerializer
 
 # cookSteps = Recipe.objects.get(id=recipe["id"])
 # stepList = []
@@ -50,13 +50,12 @@ def index(request):
 
         resultJson.append(recipe)
 
-    ingredients = Ingredient.objects.all()
-    ingredientser = IngredientSerializer(ingredients, many=True)
+    ingredients = Ingredient.objects.values()
     ingredientsList = []
-    for ingredient in ingredientser.data:
+    for ingredient in ingredients:
         ingredientsList.append(ingredient["name"])
 
-    return JsonResponse({"menuList": serrecipe.data, "ingredients": ingredientsList}, safe=False)
+    return JsonResponse({"menuList": list(resultJson), "ingredients": list(ingredientsList)}, safe=False)
 
 @csrf_exempt
 def update_rating(request, recipe_id):
@@ -67,14 +66,12 @@ def update_rating(request, recipe_id):
 
     if request.method == "POST":
         recipe.voted = request.POST["voted"]
-        recipe.rating = request.POST["average"]
+        recipe.average = request.POST["average"]
         recipe.save()
-        ser = RecipeSerializer(recipe)
-        return JsonResponse(ser.data, safe=False)
+        return JsonResponse({"": ""}, safe=False)
 
 @csrf_exempt
 def get_last_popular(request, search_id):
     recipes = Recipe.objects.values().order_by('-created_at')[0:5]
-    ser = RecipeSerializer(recipes, many=True)
 
-    return JsonResponse(ser.data, safe=False)
+    return JsonResponse(list(recipes), safe=False)

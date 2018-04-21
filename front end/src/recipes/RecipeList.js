@@ -16,15 +16,15 @@ export default class RecipeList extends Component {
     render()
     {
         return (
-            <div className="col-5">
+            <div className="col-xs-5">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-xs-12">
                         <button className="btn btn-success">New Recipe</button>
                     </div>
                 </div>
                 <hr/>
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-xs-12">
                         {this.showRecipes()}
                     </div>
                 </div>

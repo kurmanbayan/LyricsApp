@@ -13,7 +13,6 @@ class MenuList extends Component {
               return <MenuItem
                         key={index}
                         data={data}
-                        onRatingChange={this.props.onRatingChange}
                         removeFromFavourites={this.props.removeFromFavourites}
                         favouritesList={this.props.favouritesList}
                         listOfIngredients={this.props.listOfIngredients}
