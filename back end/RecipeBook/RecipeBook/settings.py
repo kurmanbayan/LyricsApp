@@ -29,9 +29,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
-    'accounts',
     'rest_framework',
     'corsheaders'
 ]
@@ -56,7 +52,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

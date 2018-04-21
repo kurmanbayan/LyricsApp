@@ -111,6 +111,7 @@ class MainPage extends Component {
           </div>
           <div className="col-md-8">
             <MenuList
+              onRatingChange={this.props.onRatingChange}
               typesOfIngredients={this.props.typesOfIngredients}
               removeFromFavourites={this.props.removeFromFavourites}
               favouritesList={this.props.favouritesList}

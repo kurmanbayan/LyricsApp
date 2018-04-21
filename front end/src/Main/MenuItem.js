@@ -15,6 +15,7 @@ class MenuItem extends Component {
   }
 
   ratingChanged = (e) => {
+    this.props.onRatingChange(this.props.data.id, e.target.getAttribute('aria-posinset'))
     console.log(e.target.getAttribute('aria-posinset'))
   }
 
@@ -48,7 +49,7 @@ class MenuItem extends Component {
             <br/>
             <div className="row">
               <div className="col-md-11">
-                <Rating onClick={this.ratingChanged} maxRating={5} defaultRating={3} icon='star' />
+                <Rating onClick={this.ratingChanged} maxRating={5} defaultRating={parseInt(this.props.data.rating, 10)} icon='star' />
               </div>
               <div className="col-md-1">
                 <FavouriteButton

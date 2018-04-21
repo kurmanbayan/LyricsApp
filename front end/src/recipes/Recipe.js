@@ -88,7 +88,7 @@ import _ from "lodash"
      }
 
      onClickDelete(item_id){
-        _.remove(this.state.recipes, recipe => recipe.id == item_id);
+        _.remove(this.state.recipes, recipe => recipe.id === item_id);
 
         this.setState({
             recipes: this.state.recipes
@@ -132,7 +132,7 @@ import _ from "lodash"
         const nIngredientName = nRecipe.editIngredientName.value;
         const nIngredientAmout = nRecipe.editIngredientAmount.value;
 
-        const foundRecipe = this.state.recipes.find(recipe=> recipe.id == oRecipe.id );
+        const foundRecipe = this.state.recipes.find(recipe=> recipe.id === oRecipe.id );
         foundRecipe.name = nName;
         foundRecipe.imgPath = nImagePath;
         foundRecipe.description = nDescription;
