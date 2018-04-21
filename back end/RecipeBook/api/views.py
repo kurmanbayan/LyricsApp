@@ -1,5 +1,13 @@
 from .models import Recipe, CookStep, IngredientsFull, Ingredient
 from django.http import HttpResponse, JsonResponse
+from rest_framework.generics import (
+    CreateAPIView,
+    ListAPIView,
+    RetrieveAPIView,
+    UpdateAPIView,
+    DestroyAPIView
+
+)
 
 def index(request):
     recipes = Recipe.objects.values()
@@ -30,3 +38,61 @@ def index(request):
         resultJson.append(recipe)
 
     return JsonResponse(list({"asd": "Asd"}), safe=False)
+
+
+
+from .serializers import (RecipeSerializer,
+                          RecipeCreateUpdateSerializer,
+                          IngredientSerializer,
+                          IngredientCreateUpdateSerializer
+                          )
+
+
+class RecipeAPIView(ListAPIView):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer
+
+
+class RecipeDetailAPIView(RetrieveAPIView):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer
+
+class RecipeUpdateAPIView(UpdateAPIView):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeCreateUpdateSerializer
+
+
+class RecipeDeleteAPIView(DestroyAPIView):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer
+
+class RecipeCreateAPIView(CreateAPIView):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeCreateUpdateSerializer
+
+
+
+# INgredient
+
+class IngredientAPIView(ListAPIView):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientSerializer
+
+
+class IngredientDetailAPIView(RetrieveAPIView):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientSerializer
+
+class IngredientUpdateAPIView(UpdateAPIView):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientCreateUpdateSerializer
+
+
+class IngredientDeleteAPIView(DestroyAPIView):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientSerializer
+
+class IngredientCreateAPIView(CreateAPIView):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientCreateUpdateSerializer
+
