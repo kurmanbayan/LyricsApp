@@ -1,7 +1,17 @@
 from django.db import models
 
-class Recipe(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=400, blank=True)
+    imgPath = models.CharField(max_length=1000, blank=True)
+
+    def __str__(self):
+        return self.name
+
+class Recipe(models.Model):
+    category_key = models.ForeignKey(Category, on_delete=models.CASCADE, default=1, related_name="category_key")
+    name = models.CharField(max_length=400, blank=True)
+    portion = models.IntegerField(default=0)
+    difficulty = models.CharField(max_length=400, blank=True)
     description = models.CharField(max_length=1000, blank=True)
     imgPath = models.CharField(max_length=1000, blank=True)
     time = models.CharField(max_length=1000, blank=True)
@@ -11,6 +21,7 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class CookStep(models.Model):
     howto_step = models.CharField(max_length=1000, blank=True)

@@ -1,4 +1,4 @@
-from .models import Recipe, CookStep, IngredientsFull, Ingredient
+from .models import Recipe, CookStep, IngredientsFull, Ingredient, Category
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -18,10 +18,13 @@ def index(request):
     resultJson = []
     serrecipe = RecipeSerializer(recipes, many=True)
     for recipe in serrecipe.data:
+        category = Category.objects.get(category_key=recipe["category_key"])
+        recipe["category"] = category.name
+
         try:
             steps = CookStep.objects.filter(recipe_id=recipe["id"])
         except Exception as e:
-            return JsonResponse({"error": str(e)}, status=404)
+            return JsonResponse({"error": str(e), "code": 1}, status=404)
 
         stepList = []
         for step in steps.values():
@@ -31,7 +34,7 @@ def index(request):
         try:
             ingredients = IngredientsFull.objects.filter(recipe_id=recipe["id"])
         except Exception as e:
-            return JsonResponse({"error": str(e)}, status=404)
+            return JsonResponse({"error": str(e), "code": 1}, status=404)
 
         ingredientList = []
         for ingredient in ingredients.values():
@@ -41,7 +44,7 @@ def index(request):
         try:
             ingredientSmall = Ingredient.objects.filter(recipe_id=recipe["id"])
         except Exception as e:
-            return JsonResponse({"error": str(e)}, status=404)
+            return JsonResponse({"error": str(e), "code": 1}, status=404)
 
         ingredientSmallList = []
         for ingredient in ingredientSmall.values():
@@ -55,7 +58,44 @@ def index(request):
     for ingredient in ingredients:
         ingredientsList.append(ingredient["name"])
 
-    return JsonResponse({"menuList": list(resultJson), "ingredients": list(ingredientsList)}, safe=False)
+    return JsonResponse({"menuList": list(resultJson), "ingredients": list(ingredientsList), "code": 0}, safe=False)
+
+def get_categories(request):
+    categories = Category.objects.values()
+    return JsonResponse({"categories": list(categories), "code": 0}, safe=False)
+
+def get_recipes_by_category(request, category_id):
+        main_category = Category.objects.get(id=category_id)
+
+        recipes = Recipe.objects.all()
+        resultJson = []
+        serrecipe = RecipeSerializer(recipes, many=True)
+        for recipe in serrecipe.data:
+            category = Category.objects.get(category_key=recipe["category_key"])
+            if (category.name == main_category.name):
+                try:
+                    steps = CookStep.objects.filter(recipe_id=recipe["id"])
+                except Exception as e:
+                    return JsonResponse({"error": str(e), "code": 1}, status=404)
+
+                stepList = []
+                for step in steps.values():
+                    stepList.append(step["howto_step"])
+                recipe["howto"] = stepList
+
+                try:
+                    ingredients = IngredientsFull.objects.filter(recipe_id=recipe["id"])
+                except Exception as e:
+                    return JsonResponse({"error": str(e), "code": 1}, status=404)
+
+                ingredientList = []
+                for ingredient in ingredients.values():
+                    ingredientList.append(ingredient["ingredient"])
+                recipe["ingredients_full"] = ingredientList
+
+                resultJson.append(recipe)
+
+        return JsonResponse({"recipeList": list(resultJson), "code": 0}, safe=False)
 
 @csrf_exempt
 def update_rating(request, recipe_id):
